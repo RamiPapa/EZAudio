@@ -347,17 +347,24 @@ UInt32 const EZAudioPlotDefaultMaxHistoryBufferLength = 8192;
 
 - (void)setSampleData:(float *)data length:(int)length
 {
-    NSLog(@"seodong setSampleData test seo 111");
+    NSLog(@"seodong setSampleData test seo 222");
     
 //    length = length / 2;
     
     CGPoint *points = self.points;
-    for (int i = 0; i < length; i = i+ 2)
+    for (int i = 0; i < length; i ++)
     {
         int index = i;
         
         points[index].x = index;
-        points[index].y = data[index] * self.gain;
+        
+        if (i % 2 == 0)
+        {
+            points[index].y = data[index] * self.gain;
+        }
+        else{
+            points[index].y = 0;
+        }
     }
     points[0].y = points[length - 1].y = 0.0f;
     self.pointCount = length;
