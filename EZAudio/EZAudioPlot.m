@@ -347,6 +347,8 @@ UInt32 const EZAudioPlotDefaultMaxHistoryBufferLength = 8192;
 
 - (void)setSampleData:(float *)data length:(int)length
 {
+    NSLog(@"seodong setSampleData");
+    
     CGPoint *points = self.points;
     for (int i = 0; i < length; i++)
     {
