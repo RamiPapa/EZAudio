@@ -347,7 +347,7 @@ UInt32 const EZAudioPlotDefaultMaxHistoryBufferLength = 8192;
 
 - (void)setSampleData:(float *)data length:(int)length
 {
-    NSLog(@"seodong setSampleData test seo length = %d",length);
+    NSLog(@"seodong setSampleData 1.0.0 length = %d",length);
     
 //    length = length / 2;
     
