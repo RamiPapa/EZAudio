@@ -234,7 +234,7 @@ UInt32 const EZAudioPlotDefaultMaxHistoryBufferLength = 8192;
         [self resetHistoryBuffers];
         float data[self.pointCount];
         memset(data, 0, self.pointCount * sizeof(float));
-        [self setSampleData:data length:self.pointCount];
+        [self setSampleData:data length:self.pointCount gap:1];
         [self redraw];
     }
 }
