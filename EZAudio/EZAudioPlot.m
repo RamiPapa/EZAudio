@@ -313,7 +313,7 @@ UInt32 const EZAudioPlotDefaultMaxHistoryBufferLength = 8192;
 #pragma mark - Update
 //------------------------------------------------------------------------------
 
-- (void)updateBuffer:(float *)buffer withBufferSize:(UInt32)bufferSize
+- (void)updateBuffer:(float *)buffer withBufferSize:(UInt32)bufferSize gap:(NSUInteger)gap
 {
     // append the buffer to the history
     [EZAudioUtilities appendBufferRMS:buffer
@@ -325,12 +325,12 @@ UInt32 const EZAudioPlotDefaultMaxHistoryBufferLength = 8192;
     {
         case EZPlotTypeBuffer:
             [self setSampleData:buffer
-                         length:bufferSize];
+                         length:bufferSize gap:gap];
             break;
         case EZPlotTypeRolling:
             
             [self setSampleData:self.historyInfo->buffer
-                         length:self.historyInfo->bufferSize];
+                         length:self.historyInfo->bufferSize gap:gap];
             break;
         default:
             break;
@@ -345,9 +345,9 @@ UInt32 const EZAudioPlotDefaultMaxHistoryBufferLength = 8192;
 
 //------------------------------------------------------------------------------
 
-- (void)setSampleData:(float *)data length:(int)length
+- (void)setSampleData:(float *)data length:(int)length gap:(NSUInteger)gap
 {
-    NSLog(@"seodong setSampleData 1.0.0 length = %d",length);
+    NSLog(@"seodong setSampleData 1.0.0 length = %d gap=  %ld",length,gap);
     
 //    length = length / 2;
     
@@ -358,7 +358,7 @@ UInt32 const EZAudioPlotDefaultMaxHistoryBufferLength = 8192;
         
         points[index].x = index;
         
-        if (i % 5 == 0)
+        if (i % gap == 0)
         {
             points[index].y = data[index] * self.gain;
         }
